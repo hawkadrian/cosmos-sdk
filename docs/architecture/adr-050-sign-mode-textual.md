@@ -15,12 +15,33 @@
 * Jan 23, 2023: Switch Screen.Text to Title+Content.
 * Mar 07, 2023: Change SignDoc from array to struct containing array.
 * Mar 20, 2023: Introduce a spec version initialized to 0.
+* Jan 24, 2025: Document current implementation status and clarify non-deprecation.
 
 ## Status
 
 Accepted. Implementation started. Small value renderers details still need to be polished.
 
 Spec version: 0.
+
+## Current Implementation Status
+
+**SIGN_MODE_TEXTUAL is NOT deprecated.** The feature is actively being developed and is part of the long-term roadmap to replace SIGN_MODE_LEGACY_AMINO_JSON.
+
+### Current State
+- **Implementation**: SIGN_MODE_TEXTUAL is implemented in the codebase but is **not enabled by default**
+- **Reason for not being default**: Requires additional dependencies (x/bank keeper or gRPC connection for coin metadata)
+- **Testing**: Available for testing purposes when manually enabled
+- **Production readiness**: Still in development phase, not yet ready for production use
+
+### Future Plans
+- SIGN_MODE_TEXTUAL will be enabled by default once fully released (see [issue #11970](https://github.com/cosmos/cosmos-sdk/issues/11970))
+- The goal is to replace SIGN_MODE_LEGACY_AMINO_JSON for hardware wallet signing
+- No plans to deprecate or remove SIGN_MODE_TEXTUAL
+
+### Migration Path
+- SIGN_MODE_LEGACY_AMINO_JSON will be deprecated once SIGN_MODE_TEXTUAL is fully adopted
+- The transition will be gradual to ensure ecosystem compatibility
+- Hardware wallets (like Ledger) will need to update their applications to support SIGN_MODE_TEXTUAL
 
 ## Abstract
 
